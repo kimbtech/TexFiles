@@ -1,0 +1,36 @@
+\documentclass{kimbblaetter}
+
+%Aufgabenblatt und Personeninfo
+\defineFach{Fach}
+\defineAuthor{Max Mustermann}
+\defineStudents{Max Mustermann 00000 - Otto Müller 000000}
+\defineGruppe{Gruppe 12}
+\defineNummer{ 5 }
+
+%Ausgabemodi
+%	Namen nach oben links?
+%\rearrangeUp
+%	Finale Ausgabe?
+%\outputFinal
+%	Spaetere Weitergabe?
+%\laterPublish
+
+\begin{document}
+	%Klasseninfo im Draftmode
+	\showinfo
+
+	%Nutzung der Klasse
+	\aufgabe{Übung 2}
+	\kommentar{Test}
+	
+	\aufgabe{Task 3}
+	\showbeta{ $5 \cdot 5 = 24 $ }
+	\fixed{Das war falsch, $25$ wäre korrekt.}
+	
+	\aufgabe{Bonus}
+	Und jetzt ein schöner Beweis!
+	\beweisbox
+	\\
+	Das stimmt nicht $ 1 = 3 $ \kreuzf, aber das $ 1 < 3 $\hakenw!
+	
+\end{document}
