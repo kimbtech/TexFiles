@@ -1,0 +1,120 @@
+\documentclass{scrartcl}
+
+\renewcommand*{\familydefault}{\sfdefault}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[utf8]{inputenc}
+
+\usepackage[ngerman]{babel} % neue deutsche Trennungsregeln, etc
+
+\usepackage[scaled=1]{helvet} %Schriftart
+
+\usepackage{tikz}
+\usepackage{tkz-fct}
+\usetikzlibrary{shapes.misc}
+\usetikzlibrary{shapes, calc, shapes, arrows, matrix}
+
+\usepackage[landscape]{geometry}
+\geometry{bottom=30pt,top=30pt,left=60pt}
+
+\usepackage{fancyhdr,amssymb} 
+\pagestyle{empty} 
+
+\begin{document}
+
+	\section*{Schema zu unendlichen Reihen}
+	\subsection*{Konvergenz und Divergenz}
+	Gegeben sei die Reihe: $ \sum\limits_{k=0}^{\infty} a_k $\\
+	\\
+	\\
+		\begin{tikzpicture}[scale=1]
+				%Style
+				\tikzstyle{frage}=[anchor=west,draw,fill=black!15,rectangle,inner sep=5pt]
+				\tikzstyle{kriterium}=[anchor=west,draw=black,rectangle,inner sep=5pt]
+				\tikzstyle{erklaerung}=[anchor=west,draw=white,rectangle,inner sep=1pt]
+				\tikzstyle{pfeil_eins}=[->, ultra thick]
+				\tikzstyle{pfeil_zwei}=[dotted, ultra thick]
+	
+				%Fragen vorne
+				\node (fra_null)[frage] at (0,8) {Ist $a_k$ eine Nullfolge?};
+				\node (fra_geo)[frage] at (0,6) {L\"asst sich die Reihe in eine geometsiche Reihe umformen?};
+				\node (fra_fak)[frage] at (0,4) {Gibt es Fakult\"aten in der Folge $a_k$? };
+				\node (fra_nte)[frage] at (0,2) {Gibt es n-te Potenzen in der Folge $a_k$?};
+				\node (fra_alt)[frage] at (0,0) {Alternieren die Glieder der Folge $a_k$?};
+				\node (kri_ver)[kriterium] at (0,-2) {Vergleichskriterium};
+				
+				%Erklaerungen
+				\node (erk_triv)[erklaerung] at (18,8) {\textit{Divergenz}};
+				
+				\node (erk_geo)[erklaerung] at (18,6) {$ \sum\limits_{k=0}^{\infty} q^k $};
+				\matrix[matrix of nodes,left delimiter=\lbrace] at (23,6) {
+					$|q| < 1 \Rightarrow$ absolute Konvergenz  \\
+					$q \ge 1 \Rightarrow$ bestimmte Divergenz \\
+					$q \le -1 \Rightarrow$ unbestimmte Divergenz \\
+				};
+				
+				\node (erk_fak)[erklaerung] at (18,3.7) {};
+				\node (erk_fak_a)[erklaerung] at (18,4.4) {$\forall k \ge k_0 : a_k \neq 0$};
+				\node (erk_fak_d)[erklaerung] at (18.5,3.8) {$ \exists N \forall k \ge N : \left\vert \frac{a_{k+1}}{a_k} \right\vert > 1 \Rightarrow$ Divergenz};
+				\node (erk_fak_k)[erklaerung] at (18.5,3.0) {$ \limsup\limits_{k \to \infty} \left\vert \frac{a_{k+1}}{a_k} \right\vert < 1  \Rightarrow$ absolute Konvergenz};
+				
+				\node (erk_nte)[erklaerung] at (18,1.5) {};
+				\node (erk_nte_d)[erklaerung] at (18,1.9) {$ \limsup\limits_{k \to \infty} \sqrt[k]{ |a_k| } > 1 \Rightarrow$ Divergenz};
+				\node (erk_nte_k)[erklaerung] at (18,1.1) {$ \limsup\limits_{k \to \infty} \sqrt[k]{ |a_k| } < 1  \Rightarrow$ absolute Konvergenz};
+				
+				\node (erk_alt)[erklaerung] at (18,0) {Konvergenz, sofern a), b) \& c) zutreffen};
+				\node (erk_alt_mon)[erklaerung] at (18,-0.6) { a) $|a_1| \ge |a_2| \ge |a_3| ... $ (monoton fallend)};
+				\node (erk_alt_alt)[erklaerung] at (18,-1.2) { b) $\forall n \in \mathbb{N}: a_{2n-1} \le 0 \le a_{2n} $ (alternierend)};
+				\node (erk_alt_null)[erklaerung] at (18,-1.8) { c) $\lim\limits_{k \to \infty} a_k = 0 $ (Nullfolge)};
+				
+				%Vergleichskriterium unten
+				\node (fra_ver)[frage] at (4,-3) {Wird Konvergenz oder Divergenz vermutet?};
+				\node (erk_ver_min)[erklaerung] at (1,-5) {Divergente Minorante (z.B.: $\forall k \ge k_0: |a_k| \ge \frac{1}{k} $)};
+				\node (erk_ver_maj)[erklaerung] at (10,-5) {Konvergente Majorante (z.B.: $\forall k \ge k_0: |a_k| \le \frac{1}{k^2} \Rightarrow$ absolute Konvergenz)};
+				%Vergleichskriterium unten Pfeile
+				\draw[pfeil_eins] (fra_ver) -- (erk_ver_maj) node [midway, above right] { Konvergenz };
+				\draw[pfeil_eins] (fra_ver) -- (erk_ver_min) node [midway, above left] { Divergenz };
+				
+				%Kriterien mitte
+				\node (kri_null)[kriterium] at (12,8) {Trivialkriterium};
+				\node (kri_geo)[kriterium] at (12,6) {Geometrische Reihe};
+				\node (kri_fak)[kriterium] at (12,4) {Quotientenkriterium};
+				\node (kri_nte)[kriterium] at (12,2) {Wurzelkriterium};
+				\node (kri_alt)[kriterium] at (12,0) {Leibniz-Kriterium};
+				
+				%Pfeile vorne - vorne (vertikal)
+				\draw[pfeil_eins] (fra_null) -- (fra_geo) node [midway, right, above=0.04cm] { Ja };
+				\draw[pfeil_eins] (fra_geo) -- (fra_fak) node [midway, right=0.04cm] { Nein };
+				\draw[pfeil_eins] (fra_fak) -- (fra_nte) node [midway, right] { Nein };
+				\draw[pfeil_eins] (fra_nte) -- (fra_alt) node [midway, right] { Nein };
+				\draw[pfeil_eins] (fra_alt) -- (kri_ver) node [midway, right] { Nein };
+				\draw[pfeil_eins] (kri_ver) -- (fra_ver) node [midway, right] {};
+				
+				%Pfeile vorne -> mitte (horizontal)
+				\draw[pfeil_eins] (fra_null) -- (kri_null) node [midway, right, below=0.04cm] { Nein };
+				\draw[pfeil_eins] (fra_geo) -- (kri_geo) node [midway, right, above=0.04cm] { Ja };
+				\draw[pfeil_eins] (fra_fak) -- (kri_fak) node [midway, right, below=0.04cm] { Ja };
+				\draw[pfeil_eins] (fra_nte) -- (kri_nte) node [midway, right, below=0.04cm] { Ja };
+				\draw[pfeil_eins] (fra_alt) -- (kri_alt) node [midway, right, below=0.04cm] { Ja };
+				
+				%Pfeile mitte -> vorne (schraeg)
+				\draw[pfeil_eins] (kri_fak) -- (fra_nte) node [midway, below right] { Keine Aussage };
+				\draw[pfeil_eins] (kri_nte) -- (fra_alt) node [midway, below right] { Keine Aussage };
+				\draw[pfeil_eins] (kri_alt) -- (kri_ver) node [midway, below right] { absolute Konvergenz benötigt };
+				
+				%Erklaerungen Pfeile
+				\draw[pfeil_zwei] (kri_null) -- (erk_triv) node {};
+				\draw[pfeil_zwei] (kri_geo) -- (erk_geo) node {};
+				\draw[pfeil_zwei] (kri_fak) -- (erk_fak) node {};
+				\draw[pfeil_zwei] (kri_nte) -- (erk_nte) node {};
+				\draw[pfeil_zwei] (kri_alt) -- (erk_alt) node {};				
+			\end{tikzpicture}
+			\\
+			\\
+			{\tiny
+				Dieses Schema erhebt keinen Anspruch an vollständige mathematische Korrektheit bzw. die Abdeckung aller Fälle.\\
+				Es ist lediglich als Hilfe bei der Untersuchung von unendlichen Reihen gedacht.\\
+				Version 1.2 - \today
+			}
+			
+\end{document}

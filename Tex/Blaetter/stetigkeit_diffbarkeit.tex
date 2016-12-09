@@ -1,0 +1,75 @@
+\documentclass{scrartcl}
+
+\renewcommand*{\familydefault}{\sfdefault}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[utf8]{inputenc}
+
+\usepackage[ngerman]{babel} % neue deutsche Trennungsregeln, etc
+
+\usepackage[scaled=1]{helvet} %Schriftart
+
+\usepackage{graphicx}
+\usepackage{amssymb, amsfonts, amsthm, amsmath, float}
+\usepackage{numprint}
+\usepackage{stmaryrd}
+
+\usepackage{fancyhdr}
+\pagestyle{empty} 
+
+\begin{document}
+
+	\section*{Stetigkeit und Differenzierbarkeit}
+	\subsection*{Stetigkeit}
+		
+		\begin{align*}
+			&f: I \to \mathbb{R} \text{ stetig in } x_0 \in I \\
+			&\Leftrightarrow
+				\lim\limits_{ x \to x_0 } f(x) = f(x_0)
+			\Leftrightarrow
+				\lim\limits_{ x \to x_0^- } f(x) = \lim\limits_{ x \to x_0^+ } f(x) = f(x_0)
+		\end{align*}
+		$f$ heißt stetig auf $I$, falls $f$ stetig in $\forall x \in I$.
+		
+		\subsubsection*{Beispiel}
+		\[
+			\lim\limits_{ x \to x_0^- } f(x) = 1 = f(x_0) 
+			~~~~~~~~~~~
+			\lim\limits_{ x \to x_0^+ } f(x) = 2 \neq f(x_0)
+		\]
+		
+		\begin{itemize}
+			\item[$\to$] linksseitige Stetigkeit 
+			\item[$\to$] keine rechtsseitige Stetigkeit
+			\item[$\to$] keine Stetigkeit 
+		\end{itemize}
+		
+		\subsection*{Differenzierbarkeit}
+		
+		Differentialquotient in $x_0$:
+		\[
+			\lim\limits_{ x \to x_0 } \frac{f(x) - f(x_0)}{x - x_0} 
+			=
+			\lim\limits_{ h \to 0 } \frac{f(x_0+h) - f(x_0)}{h} 
+		\]
+		Wenn Grenzwert existiert, ist $f$ differenzierbar in $x_0$ und Grenzwert ist die Ableitung in $x_0$.
+		
+		\begin{align*}
+			&\text{ linksseitig differenzierbar } \Leftrightarrow \text{ es existiert } \lim\limits_{ h \to 0^- } \frac{f(x_0+h) - f(x_0)}{h}
+			\\
+			&\text{ rechtsseitig differenzierbar } \Leftrightarrow \text{ es existiert } \lim\limits_{ h \to 0^+ } \frac{f(x_0+h) - f(x_0)}{h}
+		\end{align*}
+		rechtsseitige und linksseitige Differenzierbarkeit mit gleicher Ableitung\\
+		\hspace*{2cm} $\Rightarrow$ Differenzierbarkeit
+		
+		\subsection*{Zusammenhänge}
+			\begin{center}
+				$f(x)$ differenzierbar $\Rightarrow$ $f(x)$ stetig
+				\\
+				nicht $f(x)$ stetig $\Rightarrow$ nicht $f(x)$ differenzierbar
+			\end{center}
+
+		{\tiny
+			Version 1.1 - \today
+		}
+\end{document}
