@@ -1,0 +1,125 @@
+\documentclass{scrartcl}
+
+\renewcommand*{\familydefault}{\sfdefault}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[utf8]{inputenc}
+
+\usepackage[ngerman]{babel} % neue deutsche Trennungsregeln, etc
+
+\usepackage[scaled=1]{helvet} %Schriftart
+
+\usepackage{graphicx, color}
+\usepackage{amssymb, amsfonts, amsthm, amsmath, float}
+\usepackage{numprint}
+\usepackage{stmaryrd}
+
+\usepackage{fancyhdr}
+\pagestyle{empty} 
+
+\begin{document}
+
+	\section*{Exponentialfunktionen}
+	\subsection*{Vereinfachte Schreibweise}
+
+	\[
+	e^x =: exp( x )
+	\]
+
+	\subsection*{Ableitungsregeln}
+
+	Sei $I \subseteq \mathbb{R}$ ein Intervall und seien $b: I \to (0, \infty)$ und $r: I \to \mathbb{R}$ differenzierbare
+	Funktionen.\\
+	Durch \[
+		f(x) = b(x)^{r(x)} ~~~~~~~, x \in I
+	\] wird eine Funktion $f: I \to (0, \infty) \to \mathbb{R}$ definiert.\\
+	Es gilt die Darstellung:
+	\[
+		f(x) = exp( r(x) \ln(b(x)))
+	\]
+	also folgt mit der Ketten- und Produktregel die Differenzierbarkeit und 
+	\[
+		f'(x) = exp( r(x) \ln(b(x)) )\left( r'(x) \ln(b(x)) + r(x) \frac{b'(x)}{b(x)} \right)
+	\]
+	
+	\begin{itemize}
+		\item
+			für r konstant und $b(x) = x$\\
+			\[
+				f(x) = x^r = exp( r \ln(x) )
+			\]
+			\[
+				f'(x) = exp( r \ln(x) ) \left( \frac{r}{x} \right) = x^r \frac{r}{x} = r x^{(r-1)}
+			\]
+		\item
+			Für $b > 0$ und $r(x) = x$\\
+			\[
+				f(x) = b^x = exp( x \ln( b ) )
+			\]
+			\[
+				f'(x) = exp( x \ln( b ) )  \ln(b) = b^x \ln(b)
+			\]
+			
+	\end{itemize}
+	
+	\section*{Regeln von de l'Hospital}
+	
+	\subsection*{Satz}
+	
+	Seien $f,g$ definiert, differenzierbar und $g'(x) \neq 0$ für alle
+	$x \neq a$ in einer Umgebung von $a \in \mathbb{R} \cup \{ -\infty, \infty\}$.
+	In jeder der beiden Situation 
+	\begin{enumerate}
+		\item
+			$f(x) \to 0$ und $g(x) \to 0$ für $x \to a$
+		\item			
+			$f(x) \to \pm \infty $ und $ g(x) \to \pm \infty$ für $x \to a$
+	\end{enumerate}
+	gilt dann:
+	\[
+		\exists \lim\limits_{x \to a} \frac{f'(x)}{g'(x)} \in \mathbb{R} \cup \{ -\infty, \infty\}
+		\Rightarrow
+		\lim\limits_{x \to a} \frac{f'(x)}{g'(x)} = \lim\limits_{x \to a} \frac{f(x)}{g(x)}
+	\]
+	
+	\subsection*{Warnungen}
+		\begin{itemize}
+			\item
+				Aus der Existenz von $ \lim\limits_{x \to a} \frac{f'(x)}{g'(x)} $ darf unter der Voraussetzung
+				\glqq$\frac{0}{0}$\grqq ~ auf die Existenz von $ \lim\limits_{x \to a} \frac{f(x)}{g(x)} $ geschlossen werden.\\
+				Umgekehrt kann aber $ \lim\limits_{x \to a} \frac{f(x)}{g(x)} $ existieren, obwohl
+				$ \lim\limits_{x \to a} \frac{f'(x)}{g'(x)} $ \underline{nicht} existiert. \\
+				
+				\begin{description}
+					\item[Beispiel]
+					$f(x) = x^2 \cos(\frac{1}{x}), ~~~ g(x) = x, ~~~ a = 0$\\
+					\[
+						\lim\limits_{x \to 0} \frac{f'(x)}{g'(x)} = \lim\limits_{x \to 0} f'(x) 
+						~~~~~~ \text{ existiert nicht}
+					\]
+					Aber $\lim\limits_{x \to 0} x^2 \cos(\frac{1}{x}) = 0$
+				\end{description}
+				
+			\item
+				Die Voraussetzung \glqq$\frac{0}{0}$\grqq ~ bzw. \glqq$\frac{\infty}{\infty}$\grqq ~
+				muss bestehen und \underline{jedes Mal} geprüft werden!\\
+			
+				\begin{description}
+					\item[Beispiel]
+						{\color{red}
+						\[
+							\lim\limits_{ x \to 0} \frac{\sin(x)}{x^2} = 
+							\underbrace{\lim\limits_{ x \to 0} \frac{\cos(x)}{2x}}_{ \text{nicht } \glqq\frac{0}{0}\grqq } =
+							\underbrace{\lim\limits_{ x \to 0} \frac{- \sin(x)}{2}}_{ \text{nicht } \glqq\frac{0}{0}\grqq } = 0
+						\]
+						{\tiny obiges ist falsch !!}
+						}
+						
+				\end{description}	
+			
+		\end{itemize}
+
+		{\tiny
+			Version 1.0 - \today
+		}
+\end{document}
