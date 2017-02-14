@@ -2,9 +2,9 @@
 %	LaTex Klasse fuer Uebungszettel
 %		by KIMB-technologies 
 %	
-%	Version: 0.7 Alpha
+%	Version: 1.0 Alpha
 %	Started: 11.11.2016
-%	Last changed: 29.11.2016
+%	Last changed: 14.02.2017
 %
 %	Released under terms of
 %		GPLv3
@@ -71,16 +71,32 @@
 \RequirePackage{listings}
 \RequirePackage{xcolor}
 \RequirePackage{textcomp}
-\lstset{%
- 	basicstyle=\ttfamily,%
- 	showstringspaces=false,%
-	upquote=true}
-\lstdefinestyle{pseudo}{language={},
-	basicstyle=\normalfont,
+
+\definecolor{pblue}{rgb}{0.13,0.13,1}
+\definecolor{pgreen}{rgb}{0,0.5,0}
+\definecolor{pred}{rgb}{0.9,0,0}
+\definecolor{pgrey}{rgb}{0.46,0.45,0.48}
+\definecolor{bgrey}{rgb}{0.95,0.95,0.95}
+\lstset{
+	language=Java,
+	showspaces=false,
+	showtabs=false,
+	breaklines=true,
+	commentstyle=\color{pgreen},
+	keywordstyle=\color{pblue},
+	stringstyle=\color{pred},
+	%basicstyle=\ttfamily,
+	basicstyle=\footnotesize\ttfamily,
 	morecomment=[l]{//},
-	morekeywords={for,to,while,do,if,then,else},
+	morekeywords={for,to,while,do,if,then,else,T,String},
 	mathescape=true,
-	columns=fullflexible}
+	backgroundcolor=\color{bgrey},
+	numbers=left,
+	numberstyle=\tiny,
+	frame=rb,
+	tabsize=2,
+	showstringspaces=false
+}
 
 %Zeiten
 \RequirePackage[ddmmyyyy,hhmmss]{datetime}
@@ -108,6 +124,9 @@
 %Kreuz und Haken Symbol (richtig, falsch)
 %	http://ctan.org/pkg/pifont
 \RequirePackage{pifont}
+
+%Schoenere Listen
+\RequirePackage{enumerate}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %	Alle Pakete geladen
@@ -247,7 +266,7 @@
 
 %Fehlerberichtigenungen in grün
 \newcommand{\fixed}[1]{
-	{\color{green} #1 \\}
+	{\color{green} #1 }
 }
 
 %Beweisbox
@@ -260,6 +279,39 @@
 %Haken fuer inkorrekt
 \newcommand{\hakenw}{\ding{51}}
 %Unter Verwendung von pifont (http://ctan.org/pkg/pifont)
+
+%Schneller inline Code
+\newcommand{\code}[1]{ \lstinline~ #1 ~}
+
+%Box fuer Definitionen
+\newcommand{\defbox}[2]{
+	\fcolorbox{#1}{gray!10}{
+		\parbox{\textwidth}{
+			#2
+		}
+	}
+}
+
+%Mathekram
+	% griech. Buchstaben fuer Vektorräume
+	\renewcommand{\a}{\alpha}
+	\renewcommand{\b}{\beta}
+	\newcommand{\g}{\gamma}
+	%Koerper K
+	\newcommand{\K}{\mathbb{K}}
+	\newcommand{\R}{\mathbb{R}}
+	\newcommand{\C}{\mathbb{C}}
+	\newcommand{\N}{\mathbb{N}}
+	% Norm
+	\newcommand{\norm}[1]{ \left\lVert #1 \right\rVert }
+	%Skalarprodukt
+	\newcommand{\skalar}[2]{ \left\langle #1, #2 \right\rangle}
+	%Landau O
+	\newcommand{\landau}{ \mathcal{O} }
+	\newcommand{\smallLandau}{ { \scriptscriptstyle\mathcal{O} } }
+	%Vektoren
+	\renewcommand{\vec}[1]{ { \color{blue} \overrightarrow{ { \color{black} #1 } } } }
+	\newcommand{\lvec}[1]{ { \color{red} \overleftarrow{ { \color{black} #1 } } } }
 
 % Info ueber die Klasse
 \newcommand{\showinfo}{
@@ -276,7 +328,7 @@
 				\textit{Befehle einfach in die Präambel einfügen.}
 			\item[Angaben] \hfill \\			
 				\underline{\textbackslash defineFach\{ Mein Fach \}} \\
-				\underline{\textbackslash defineAuthor\{ Mein Name \}} \texit{Name auf Entwürfen} \\
+				\underline{\textbackslash defineAuthor\{ Mein Name \}} \textit{Name auf Entwürfen} \\
 				\underline{\textbackslash defineStudents\{ Mein Name 000000 - Weitere Namen 000000\}} \\
 				\underline{\textbackslash defineGruppe\{Meine Abgabegruppe 0\}} \\
 				\underline{\textbackslash defineNummer\{ 2 \}} \textit{Nummer des Blattes} \\
@@ -284,8 +336,14 @@
 				\underline{\textbackslash specialcell\{Tabellenzelle \textbackslash\textbackslash mit Umbruch \} } \\
 				\underline{\textbackslash aufgabe\{Übung 2\} } \\
 				\underline{\textbackslash beweisbox } \\
-				\underline{\textbackslash kreuzf } \\
-				\underline{\textbackslash hakenw }
+				\underline{\textbackslash kreuzf, \textbackslash hakenw } \kreuzf, \hakenw \\
+				\underline{\textbackslash code \{ echo "Hallo Welt!" \} } \code{ echo "Hallo Welt!" } \\
+				\underline{\textbackslash defbox\{farbe\}\{ Eine grau hinterlegte Box mit farbigem Rand \} }
+			\item[Mathematikfeatures] \hfill \\
+				\underline{ \textbackslash a, \textbackslash b, \textbackslash g,  } $\a, \b, \g$\\
+				\underline{ \textbackslash K, \textbackslash C, \textbackslash R, \textbackslash N } $\K, \R, \C, \N$ \\
+				\underline{ \textbackslash norm \{ v \}, \textbackslash skalar \{ v \}\{ w \}  } $\norm{v}, \skalar{v}{w}$\\
+				\underline{ \textbackslash landau, \textbackslash smallLandau, \textbackslash vec\{ v \}, \textbackslash lvec\{ w \} } $ \landau, \smallLandau, \vec{ v }, \lvec{w} $
 			\item[Kommentar] \hfill \\ 
 				Anmerkungen als blauer Text, werden bei Veröffentlichung ausgeblendet. \\
 				\underline{\textbackslash kommentar\{ hier rein \}}
