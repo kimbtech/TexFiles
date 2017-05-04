@@ -1,0 +1,43 @@
+\documentclass{scrartcl}
+
+\renewcommand*{\familydefault}{\sfdefault}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[utf8]{inputenc}
+
+\usepackage[ngerman]{babel} % neue deutsche Trennungsregeln, etc
+
+\usepackage[scaled=1]{helvet} %Schriftart
+
+\usepackage{graphicx, color}
+\usepackage{amssymb, amsfonts, amsthm, amsmath, float}
+\usepackage{numprint}
+\usepackage{stmaryrd}
+
+\usepackage{fancyhdr}
+\pagestyle{empty} 
+
+\begin{document}
+
+	\section*{Schreibweisen von Matrizen}
+		\begin{align*}
+			&A \in \mathbb{K}^{n,p},
+			B \in \mathbb{K}^{p,m},
+			C \in \mathbb{K}^{n,m}
+			\\
+			&A = (a_{ij})_{i=1,...,m ~~ j=1,...,p}
+			\\
+			&(A)_{ij} = a_{ij} = A_{(ij)}
+			\\
+			&C := A \cdot B
+				= (c_{jk})_{j=1,...,n ~~ k=1,...,m}
+				= \left( \sum\limits_{i=1}^{p} a_{ji} b_{i,k} \right)_{j=1,...,n ~~ k=1,...,m}
+			\\
+			&&c_{jk}
+				= \sum\limits_{i=1}^{p} a_{ji} b_{i,k}
+		\end{align*}
+	
+		{\tiny
+			Version 1.0 - \today
+		}
+\end{document}
