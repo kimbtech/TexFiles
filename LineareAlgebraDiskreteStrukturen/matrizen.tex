@@ -19,7 +19,9 @@
 
 \begin{document}
 
-	\section*{Schreibweisen von Matrizen}
+	\section*{Matrizen}
+	
+	\subsection*{Schreibweisen von Matrizen}
 		\begin{align*}
 			&A \in \mathbb{K}^{n,p},
 			B \in \mathbb{K}^{p,m},
@@ -37,7 +39,22 @@
 				= \sum\limits_{i=1}^{p} a_{ji} b_{i,k}
 		\end{align*}
 	
+	\subsection*{Rang}	
+		\[
+			ZR(A) := spann\left( A(j,:), j=1,...,n \right)
+		\] 
+		\[
+			SR(A) := spann\left( A(:,j), j=1,...,m \right)
+		\] 
+		$Rang(A) = dim(ZR(A)) = dim(SR(A))$
+
+		\subsubsection*{Dimensionsformel}
+			$A \in \mathbb{K}^{n,n}$
+			\[
+				\underbrace{ dim( Kern(A) ) }_{\text{Anzahl Freiheitsgrade}} + Rang(A) = n
+			\]	
+		
 		{\tiny
-			Version 1.0 - \today
+			\today
 		}
 \end{document}
